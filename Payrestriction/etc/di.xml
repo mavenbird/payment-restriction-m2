@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<!--
+* Mavenbird Technologies Private Limited
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the EULA
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://mavenbird.com/Mavenbird-Module-License.txt
+*
+* =================================================================
+*
+* @category   Mavenbird
+* @package    Mavenbird_Payrestriction
+* @author     Mavenbird Team
+* @copyright  Copyright (c) 2018-2024 Mavenbird Technologies Private Limited ( http://mavenbird.com )
+* @license    http://mavenbird.com/Mavenbird-Module-License.txt
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Mavenbird\Payrestriction\Model\Rule">
+        <arguments>
+            <argument name="conditionCombine" xsi:type="object" shared="false">Mavenbird\Payrestriction\Model\Rule\Condition\Combine</argument>
+            <argument name="conditionProductCombine" xsi:type="object" shared="false">Mavenbird\Payrestriction\Model\Rule\Condition\Product\Combine</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="payrestriction_rule_listing_data_source" xsi:type="string">Mavenbird\Payrestriction\Model\ResourceModel\Rule\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="\Magento\Payment\Helper\Data">
+        <plugin name="Mavenbird_Payrestriction::Payrestriction" type="Mavenbird\Payrestriction\Plugin\Payrestriction" />
+    </type>
+    <type name="Magento\Payment\Block\Form\Container">
+        <plugin name="Mavenbird_Payrestriction::PayrestrictionAdmin" type="Mavenbird\Payrestriction\Plugin\Admin\Payrestriction" />
+    </type>
+    <type name="Magento\Payment\Model\MethodInterface">
+        <plugin name="mavenbirdPayrestrictionMethodInterface" type="Mavenbird\Payrestriction\Plugin\Payment\Model\MethodInterfacePlugin"/>
+    </type>
+    <type name="Magento\Quote\Model\Quote\Config">
+        <plugin name="Mavenbird_Payrestriction::ProductAttributes" type="Mavenbird\Payrestriction\Plugin\ProductAttributes" />
+    </type>
+    <type name="Magento\Paypal\Model\Config">
+        <plugin name="Mavenbird_Payrestriction::PaypalConfig" type="Mavenbird\Payrestriction\Plugin\PaypalConfig" />
+    </type>
+    <virtualType name="AmpayrestrictionRuleGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Mavenbird\Payrestriction\Model\ResourceModel\Rule\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">AmpayrestrictionGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <type name="Mavenbird\Payrestriction\Model\ResourceModel\Rule\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">payrestriction_rule</argument>
+            <argument name="eventPrefix" xsi:type="string">mavenbird_payrestriction_rule_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">payrestriction_rule_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Mavenbird\Payrestriction\Model\ResourceModel\Rule</argument>
+        </arguments>
+    </type>
+    <type name="\Magento\SalesRule\Setup\UpgradeData">
+        <plugin name="Mavenbird_Payrestriction::SetupUpgradeData" type="Mavenbird\Payrestriction\Plugin\Setup\UpgradeData" />
+    </type>
+    <type name="Mavenbird\Payrestriction\Model\OptionProvider\Pool">
+        <arguments>
+            <argument name="optionProviders" xsi:type="array">
+                <item name="calculation" xsi:type="object">Mavenbird\Payrestriction\Model\OptionProvider\Provider\CalculationOptionProvider</item>
+                <item name="carriers" xsi:type="object">Mavenbird\Payrestriction\Model\OptionProvider\Provider\CarriersOptionProvider</item>
+                <item name="customer_group" xsi:type="object">Mavenbird\Payrestriction\Model\OptionProvider\Provider\CustomerGroupOptionProvider</item>
+                <item name="days" xsi:type="object">Mavenbird\Payrestriction\Model\OptionProvider\Provider\DaysOptionProvider</item>
+                <item name="payment_method" xsi:type="object">Mavenbird\Payrestriction\Model\OptionProvider\Provider\PaymentMethodOptionProvider</item>
+                <item name="sales_rules" xsi:type="object">Mavenbird\Payrestriction\Model\OptionProvider\Provider\RulesOptionProvider</item>
+                <item name="status" xsi:type="object">Mavenbird\Payrestriction\Model\OptionProvider\Provider\StatusOptionProvider</item>
+                <item name="times" xsi:type="object">Mavenbird\Payrestriction\Model\OptionProvider\Provider\TimesOptionProvider</item>
+                <item name="backorders" xsi:type="object">Mavenbird\Payrestriction\Model\OptionProvider\Provider\BackorderOptionProvider</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Mavenbird\Payrestriction\Model\Rule\Factory\HandleFactory">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="customer" xsi:type="object">Mavenbird\Payrestriction\Model\Rule\Condition\Customer</item>
+                <item name="orders" xsi:type="object">Mavenbird\Payrestriction\Model\Rule\Condition\Orders</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Mavenbird\Payrestriction\Model\Rule\Factory\CombineHandleFactory">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="total" xsi:type="object">Mavenbird\Payrestriction\Model\Rule\Condition\Total</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

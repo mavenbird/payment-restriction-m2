@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Mavenbird Technologies Private Limited
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the EULA
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://mavenbird.com/Mavenbird-Module-License.txt
+*
+* =================================================================
+*
+* @category   Mavenbird
+* @package    Mavenbird_Payrestriction
+* @author     Mavenbird Team
+* @copyright  Copyright (c) 2018-2024 Mavenbird Technologies Private Limited ( http://mavenbird.com )
+* @license    http://mavenbird.com/Mavenbird-Module-License.txt
+-->
+
+<sections xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="urn:magento:mftf:Page/etc/SectionObject.xsd">
+
+    <section name="CheckoutShippingAddressSection">
+        <!--Customer Info-->
+        <element name="SelectRegion" type="select" selector="//select[@name='region_id']"/>
+        <element name="SelectCountry" type="select" selector="//select[@name='country_id']"/>
+        <element name="ShippingLoader" type="block" selector="//li[@id='opc-shipping_method']//div[@class='loader']"/>
+    </section>
+
+    <section name="CheckoutPaymentAddressSection">
+        <element name="PurchaseOrderNumber" type="input" selector="//input[@id='po_number']"/>
+        <element name="NoAvailablePaymentMethods" type="block" selector="//div[@class='no-quotes-block']"/>
+        <element name="PayPalExpressContent" type="block" selector="//div[@class='zoid-outlet']"/>
+    </section>
+
+</sections>

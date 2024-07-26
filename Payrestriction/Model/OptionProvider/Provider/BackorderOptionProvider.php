@@ -1,0 +1,40 @@
+<?php
+/**
+ * @author Mavenbird Team
+ * @copyright Copyright (c) 2020 Mavenbird (https://www.mavenbird.com)
+ * @package Mavenbird_Payrestriction
+ */
+
+
+namespace Mavenbird\Payrestriction\Model\OptionProvider\Provider;
+
+/**
+ * OptionProvider
+ */
+class BackorderOptionProvider implements \Magento\Framework\Data\OptionSourceInterface
+{
+    const ALL_ORDERS = 0;
+    const BACKORDERS_ONLY = 1;
+    const NON_BACKORDERS = 2;
+
+    /**
+     * @var array|null
+     */
+    protected $options;
+
+    /**
+     * @return array|null
+     */
+    public function toOptionArray()
+    {
+        if (!$this->options) {
+            $this->options = [
+                ['value' => self::ALL_ORDERS, 'label' => __('All orders')],
+                ['value' => self::BACKORDERS_ONLY, 'label' => __('Backorders only')],
+                ['value' => self::NON_BACKORDERS, 'label' => __('Non backorders')]
+            ];
+        }
+
+        return $this->options;
+    }
+}

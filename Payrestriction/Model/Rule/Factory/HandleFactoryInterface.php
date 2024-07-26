@@ -1,0 +1,26 @@
+<?php
+/**
+ * @author Mavenbird Team
+ * @copyright Copyright (c) 2020 Mavenbird (https://www.mavenbird.com)
+ * @package Mavenbird_Payrestriction
+ */
+
+
+namespace Mavenbird\Payrestriction\Model\Rule\Factory;
+
+/**
+ * Interface HandleFactoryInterface
+ */
+interface HandleFactoryInterface
+{
+    const CUSTOMER_HANDLE = 'customer';
+    const ORDERS_HANDLE = 'orders';
+
+    const TOTAL_COMBINE_HANDLE = 'total';
+
+    /**
+     * @param string $type
+     * @return array
+     */
+    public function create($type = self::CUSTOMER_HANDLE);
+}
