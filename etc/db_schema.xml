@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="mavenbird_paymentrestriction" resource="default" engine="innodb" comment="Own PaymentRestriction">
+    <column xsi:type="int" name="rule_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Rule Id"/>
+    <column xsi:type="varchar" name="name" nullable="true" length="255" comment="Rule Name"/>
+    <column xsi:type="varchar" name="cgid" nullable="true" length="255" comment="Customer Group"/>
+    <column xsi:type="varchar" name="pmethod" nullable="true" length="255" comment="Payment Method"/>
+    <column xsi:type="varchar" name="website" nullable="true" length="255" comment="Store Id"/>
+    <column xsi:type="timestamp" name="from_date" comment="From"/>
+    <column xsi:type="timestamp" name="to_date" comment="To"/>
+    <column xsi:type="smallint" name="is_active" padding="6" unsigned="false" nullable="false" identity="false" default="0" comment="Is Active"/>
+    <column xsi:type="mediumtext" name="conditions_serialized" nullable="true" comment="Conditions Serialized"/>
+    <column xsi:type="int" name="sort_order" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Sort Order (Priority)"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="rule_id"/>
+    </constraint>
+    <index referenceId="MAVENBIRD_PAYMENTRESTRICTION_SORT_ORDER_IS_ACTIVE_TO_DATE_FROM_DATE" indexType="btree">
+      <column name="sort_order"/>
+      <column name="is_active"/>
+      <column name="to_date"/>
+      <column name="from_date"/>
+    </index>
+  </table>
+</schema>

@@ -1,0 +1,22 @@
+{
+    "mavenbird_paymentrestriction": {
+        "column": {
+            "rule_id": true,
+            "name": true,
+            "cgid": true,
+            "pmethod": true,
+            "website": true,
+            "from_date": true,
+            "to_date": true,
+            "is_active": true,
+            "conditions_serialized": true,
+            "sort_order": true
+        },
+        "index": {
+            "MAVENBIRD_PAYMENTRESTRICTION_SORT_ORDER_IS_ACTIVE_TO_DATE_FROM_DATE": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

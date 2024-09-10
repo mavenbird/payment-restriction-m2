@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+   <menu>
+     <update id="Magento_Backend::mbmenu" title="Mavenbird" module="Magento_Backend" sortOrder="10" resource="Magento_Backend::mbmenu" />
+      <add 
+            id="Mavenbird_PaymentRestriction::Heading" 
+            title="PaymentRestriction" 
+            module="Mavenbird_PaymentRestriction"
+            sortOrder="51"
+            resource="Mavenbird_PaymentRestriction::rule"
+            parent="Magento_Backend::mbmenu"
+         />
+        <add 
+            id="Mavenbird_PaymentRestriction::Mavenbird_paymentrestriction" 
+            title="Add Payment Rule" 
+            module="Mavenbird_PaymentRestriction" 
+            sortOrder="10" 
+            action="mavenbird_paymentrestriction/example_rule/index" 
+            resource="Mavenbird_PaymentRestriction::paymentrestriction" 
+            parent="Mavenbird_PaymentRestriction::Heading"
+        />
+        <add id="Mavenbird_PaymentRestriction::configuration" 
+            title="Configuration"
+            module="Mavenbird_PaymentRestriction" 
+            sortOrder="99" 
+            parent="Mavenbird_PaymentRestriction::Heading" 
+            action="adminhtml/system_config/edit/section/mavenbird_paymentrestriction"
+            resource="Mavenbird_PaymentRestriction::paymentrestriction_configuration"
+        />
+    </menu>
+    </config>
