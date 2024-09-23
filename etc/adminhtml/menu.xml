@@ -4,7 +4,7 @@
      <update id="Magento_Backend::mbmenu" title="Mavenbird" module="Magento_Backend" sortOrder="10" resource="Magento_Backend::mbmenu" />
       <add 
             id="Mavenbird_PaymentRestriction::Heading" 
-            title="PaymentRestriction" 
+            title="Payment Restriction" 
             module="Mavenbird_PaymentRestriction"
             sortOrder="51"
             resource="Mavenbird_PaymentRestriction::rule"
